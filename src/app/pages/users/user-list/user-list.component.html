@@ -1,0 +1,32 @@
+<nz-page-header  [nzGhost]="false">
+  <nz-page-header-title>User List</nz-page-header-title>
+  <nz-page-header-extra>
+    <button nz-button nzType="dashed" routerLink="/user/create"> <i nz-icon nzType="plus-square" nzTheme="outline"></i> Add New</button>
+  </nz-page-header-extra>
+</nz-page-header>
+<nz-table #basicTable [nzLoading]="loading" [nzPageSize]="50" [nzData]="listOfData" [nzScroll]="{ y: '365px', x: '900px' }">
+  <thead>
+    <tr>
+      <th>Employee Name</th>
+      <th>Employee Code</th>
+      <th>User Name</th>
+      <th>Reporting to</th>
+      <th>Role Name</th>
+      <th nzRight nzWidth="110px">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td nzEllipsis>{{ data?.employee_name }}</td>
+      <td nzEllipsis>{{ data?.employee_code }}</td>
+      <td nzEllipsis>{{ data?.user_name }}</td>
+      <td nzEllipsis>{{ data?.reporting_to }}</td>
+      <td nzEllipsis>{{ data?.rolename }}</td>
+      <td nzRight>
+        <a nz-tooltip nzTooltipTitle="Edit"><button [routerLink]="['/user/edit/', data.userid]" nz-button nzSize="small" nzType="dashed"><i nz-icon nzType="edit" nzTheme="outline"></i></button></a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a nz-tooltip nzTooltipTitle="Reset Password"><button [routerLink]="['/user/reset-password/', data.userid]" nz-button nzSize="small" nzType="dashed"><i nz-icon nzType="undo" nzTheme="outline"></i></button></a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

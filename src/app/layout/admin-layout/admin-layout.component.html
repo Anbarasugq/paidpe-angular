@@ -1,0 +1,85 @@
+<nz-layout class="app-layout">
+  <nz-sider
+    class="menu-sidebar"
+    nzCollapsible
+    nzWidth="256px"
+    nzBreakpoint="md"
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null"
+  >
+    <div class="sidebar-logo">
+      <a href="https://ng.ant.design/" target="_blank">
+        <img *ngIf="!isCollapsed" src="../assets/logo.png" alt="logo" />
+        <img
+          *ngIf="isCollapsed"
+          style="height: 30px !important"
+          src="../assets/logo.svg"
+          alt="logo"
+        />
+        <!-- <h1>KNV CAPITAL SERVICES</h1> -->
+      </a>
+    </div>
+
+    <ul
+      nz-menu
+      nzTheme="dark"
+      nzMode="inline"
+      [nzInlineCollapsed]="isCollapsed"
+    >
+      <li
+        *ngFor="let menu of Menus"
+        nz-menu-item
+        nzMatchRouter
+        class="menu-link"
+        nzIcon="box-plot"
+      >
+        <a routerLink="{{ menu.url }}">
+          <i nz-icon nzType="{{ menu.icon }}"></i>
+          <span *ngIf="!isCollapsed" class="menu-txt">{{ menu.text }}</span>
+        </a>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+          <i
+            class="trigger"
+            nz-icon
+            [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+          ></i>
+        </span>
+
+        <div class="menu-avatar">
+          <a nz-dropdown [nzDropdownMenu]="menu">
+            <div class="admin-text">
+              <span class="admin-title">KNV Capital</span>
+              <span class="admin-subTitle">{{ loginUser || "User" }}</span>
+            </div>
+            <i nz-icon nzType="down"></i>
+          </a>
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu nzSelectable>
+              <li
+                nz-menu-item
+                class="dropdown-txt"
+                [routerLink]="['/settings/change-password']"
+              >
+                <i nz-icon nzType="lock" nzTheme="outline"></i> Change Password
+              </li>
+              <li nz-menu-item class="dropdown-txt" (click)="logout()">
+                <i nz-icon nzType="logout" nzTheme="outline"></i> Logout
+              </li>
+            </ul>
+          </nz-dropdown-menu>
+        </div>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

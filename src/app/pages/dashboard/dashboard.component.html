@@ -1,0 +1,249 @@
+<nz-page-header [nzGhost]="false">
+  <nz-page-header-title>Dashboard</nz-page-header-title>
+  <nz-page-header-extra>
+    <form
+      nz-form
+      [nzLayout]="'inline'"
+      autocomplete="off"
+      [formGroup]="validateForm"
+      (ngSubmit)="submitForm()"
+    >
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your Mobile Number!">
+          <nz-input-group>
+            <nz-input-group nzSuffixIcon="search">
+              <input
+                type="number"
+                formControlName="mobile_number"
+                nz-input
+                placeholder="Mobile Number"
+              />
+            </nz-input-group>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button nzType="primary">
+            <i nz-icon nzType="search" nzTheme="outline"></i> Search
+          </button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </nz-page-header-extra>
+</nz-page-header>
+
+<nz-card class="ant-card-dashboard" [nzBordered]="false">
+  <nz-table
+    #basicTable
+    [nzShowPagination]="false"
+    [nzLoading]="loading"
+    [nzData]="listOfData"
+    [nzScroll]="{ y: '335px', x: '1500px' }"
+  >
+    <thead>
+      <tr>
+        <th>Client Name</th>
+        <th>Mobile No</th>
+        <th>DOB</th>
+        <th>Alternate No</th>
+        <th>Annual Income</th>
+        <th>Wedding Day</th>
+        <th>PAN No</th>
+        <th>Aadhar No</th>
+        <th>Assigned To</th>
+        <th>Sales Person</th>
+        <th nzRight>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data; let i = index">
+        <td nzEllipsis>{{ data?.client_name }}</td>
+        <td nzEllipsis>{{ data?.mobile_number }}</td>
+        <td nzEllipsis>{{ data?.dob }}</td>
+        <td nzEllipsis>{{ data?.alt_mobile }}</td>
+        <td nzEllipsis>{{ data?.annual_income }}</td>
+        <td nzEllipsis>{{ data?.wedding_day }}</td>
+        <td nzEllipsis>{{ data?.pan_no }}</td>
+        <td nzEllipsis>{{ data?.aadhar_no }}</td>
+        <td nzEllipsis>{{ data?.assigned_to }}</td>
+        <td nzEllipsis>{{ data?.sales_person }}</td>
+        <td nzRight>
+          <a nz-tooltip nzTooltipTitle="Client Details"><button (click)="clientDetails(data?.id)" nz-button nzSize="small" nzType="dashed">Client Details</button></a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+
+  <br />
+
+  <nz-tabset>
+    <nz-tab nzTitle="LI Investment">
+      <nz-table
+        #insuranceTable
+        [nzShowPagination]="false"
+        [nzData]="insuranceListOfData"
+        [nzLoading]="loading"
+        [nzScroll]="{ y: '335px', x: '1900px' }"
+      >
+        <thead>
+          <tr>
+            <th>Provider Details</th>
+            <th>Policy Details</th>
+            <th>Issue Date</th>
+            <th>Due Date</th>
+            <th>Mode of Pay</th>
+            <th>Paying Term</th>
+            <th>Premium Amount</th>
+            <th>Relationship</th>
+            <th>Renewal Date</th>
+            <th>Sum Assured</th>
+            <th>Policy Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of insuranceTable.data">
+            <td nzEllipsis>{{ data?.provider_id }}</td>
+            <td nzEllipsis>{{ data?.policy_details }}</td>
+            <td>{{ data?.issue_date }}</td>
+            <td nzEllipsis>{{ data?.due_date }}</td>
+            <td nzEllipsis>{{ data?.mode_of_pay }}</td>
+            <td nzEllipsis>{{ data?.paying_term }}</td>
+            <td nzEllipsis>{{ data?.premium }}</td>
+            <td nzEllipsis>{{ data?.relationship }}</td>
+            <td nzEllipsis>{{ data?.renewal_date }}</td>
+            <td nzEllipsis>{{ data?.sum_assured }}</td>
+            <td nzEllipsis>{{ data?.policy_status }}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-tab>
+
+    <nz-tab nzTitle="Health Investment">
+      <nz-table
+        #healthTable
+        [nzShowPagination]="false"
+        [nzData]="healthListOfData"
+        [nzLoading]="loading"
+        [nzScroll]="{ y: '335px', x: '1900px' }"
+      >
+        <thead>
+          <tr>
+            <th>Provider Details</th>
+            <th>Issue Date</th>
+            <th>Due Date</th>
+            <th>Mode of Pay</th>
+            <th>Paying Term</th>
+            <th>Policy Details</th>
+            <th>Premium Amount</th>
+            <th>Relationship</th>
+            <th>Renewal Date</th>
+            <th>Sum Assured</th>
+            <th>Policy Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of healthTable.data">
+            <td nzEllipsis>{{ data?.provider_id }}</td>
+            <td>{{ data?.issue_date }}</td>
+            <td nzEllipsis>{{ data?.due_date }}</td>
+            <td nzEllipsis>{{ data?.mode_of_pay }}</td>
+            <td nzEllipsis>{{ data?.paying_term }}</td>
+            <td nzEllipsis>{{ data?.policy_details }}</td>
+            <td nzEllipsis>{{ data?.premium }}</td>
+            <td nzEllipsis>{{ data?.relationship }}</td>
+            <td nzEllipsis>{{ data?.renewal_date }}</td>
+            <td nzEllipsis>{{ data?.sum_assured }}</td>
+            <td nzEllipsis>{{ data?.policy_status }}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-tab>
+
+    <nz-tab nzTitle="Other Investment">
+      <nz-table
+        #otherTable
+        [nzData]="otherListOfData"
+        [nzLoading]="loading"
+        [nzScroll]="{ y: '335px', x: '900px' }"
+      >
+        <thead>
+          <tr>
+            <th>Mutual Fund</th>
+            <th>Gold</th>
+            <th>Consultation</th>
+            <th>PMS</th>
+            <th>Equity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of otherTable.data">
+            <td>{{ data?.mutual_fund }}</td>
+            <td>{{ data?.gold }}</td>
+            <td>{{ data?.consultation }}</td>
+            <td>{{ data?.pms }}</td>
+            <td>{{ data?.equity }}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-tab>
+
+    <nz-tab nzTitle="Service">
+      <nz-table
+        #serviceTable
+        [nzShowPagination]="false"
+        [nzData]="serviceListOfData"
+        [nzLoading]="loading"
+        [nzScroll]="{ y: '335px', x: '1100px' }"
+      >
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Mobile No</th>
+            <th>Place</th>
+            <th>Service Time</th>
+            <th>Open Description</th>
+            <th>Close Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let servicedata of serviceTable.data">
+            <td nzEllipsis>{{ servicedata?.name }}</td>
+            <td nzEllipsis>{{ servicedata?.designation }}</td>
+            <td nzEllipsis>{{ servicedata?.mobile_no }}</td>
+            <td nzEllipsis>{{ servicedata?.place }}</td>
+            <td nzEllipsis>{{ servicedata?.service_time }}</td>
+            <td nzEllipsis>{{ servicedata?.open_description }}</td>
+            <td nzEllipsis>{{ servicedata?.close_description }}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-tab>
+
+    <nz-tab nzTitle="Relations">
+      <nz-table
+        #relationTable
+        [nzShowPagination]="false"
+        [nzData]="relationListOfData"
+        [nzLoading]="loading"
+        [nzScroll]="{ y: '335px', x: '700px' }"
+      >
+        <thead>
+          <tr>
+            <th>Member Name</th>
+            <th>Member DOB</th>
+            <th>Relationship</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of relationTable.data">
+            <td nzEllipsis>{{ data?.member_name }}</td>
+            <td>{{ data?.member_dob }}</td>
+            <td nzEllipsis>{{ data?.relationship }}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-tab>
+  </nz-tabset>
+</nz-card>

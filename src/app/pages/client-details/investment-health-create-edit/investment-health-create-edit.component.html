@@ -1,0 +1,106 @@
+<nz-page-header nzBackIcon [nzGhost]="false">
+  <nz-page-header-title>{{title}} Health Insurance</nz-page-header-title>
+</nz-page-header>
+<nz-card class="ant-card-custom" [nzBordered]="false">
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm(validateForm)">
+ 
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Provider</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Select a Provider">
+      <nz-select formControlName="provider_id" nzPlaceHolder="Select a Provider" [ngModelOptions]="{ standalone: true }">
+        <nz-option
+						*ngFor="let option of providerList"
+						[nzValue]="option.id"
+						[nzLabel]="option.provider_name"
+					></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="policydetails" >Policy Details</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input nz-input type="text" id="policydetails" formControlName="policy_details" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="title" >Issue Date</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <!-- <nz-date-picker [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-date-picker> -->
+      <nz-date-picker formControlName="issue_date"></nz-date-picker>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="policystatus">Policy Status</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input nz-input type="text" formControlName="policy_status" id="policystatus" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="premium"> Premium Amount</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input nz-input type="text" formControlName="premium" id="premium" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="relationship"> relationship</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input nz-input type="text" formControlName="relationship" id="relationship" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="sumassured"> Sum Assured</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input nz-input type="text" formControlName="sum_assured" id="sumassured" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="modeofpay"> Mode of Pay</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input nz-input type="text" formControlName="mode_of_pay" id="modeofpay" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="title" >Due Date</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <!-- <nz-date-picker [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-date-picker> -->
+      <nz-date-picker formControlName="due_date"></nz-date-picker>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="payingterm"> Paying Term</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input nz-input type="text" formControlName="paying_term" id="payingterm" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="title" >Renewal Date</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <!-- <nz-date-picker [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-date-picker> -->
+      <nz-date-picker formControlName="renewal_date"></nz-date-picker>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" >Status</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <nz-switch formControlName="status" nzCheckedChildren="Active" nzUnCheckedChildren="InActive"></nz-switch>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item nz-row class="register-area">
+    <nz-form-control [nzSpan]="14" [nzOffset]="6">
+      <button [disabled]="isSubmit" nz-button nzType="primary">{{btnName}}</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+</nz-card>

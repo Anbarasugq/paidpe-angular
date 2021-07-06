@@ -1,0 +1,43 @@
+// /* You can add global styles to this file, and also import other style files */
+// .card-scroll- {
+// 	height: calc(100vh - 175px);
+// 	overflow-y: auto;
+// 	overflow-x: hidden;
+// }
+.ant-card-dashboard{
+    .ant-card-body{
+        padding:0px !important;
+		height: calc(100vh - 180px);
+		overflow-y: auto;
+		overflow-x: hidden;
+    }
+}
+
+.ant-card-custom {
+	.ant-card-body {
+		height: calc(100vh - 180px);
+		overflow-y: auto;
+		overflow-x: hidden;
+	}
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: #ffffff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}

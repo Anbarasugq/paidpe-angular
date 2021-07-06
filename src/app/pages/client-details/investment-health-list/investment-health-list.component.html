@@ -1,0 +1,42 @@
+<nz-page-header (nzBack)="onBack()" nzBackIcon [nzGhost]="false">
+  <nz-page-header-title>Investment Health List</nz-page-header-title>
+  <nz-page-header-extra>
+    <button nz-button nzType="dashed" [routerLink]="['/client/investment-health-create/', clientid]"> <i nz-icon nzType="plus-square" nzTheme="outline"></i> Add New</button>
+  </nz-page-header-extra>
+</nz-page-header>
+<nz-table #basicTable [nzData]="listOfData" [nzLoading]="loading" [nzScroll]="{ y: '270px', x: '2000px' }">
+  <thead>
+    <tr>
+      <th>Issue Date</th>
+      <th>Due Date</th>
+      <th>Mode of Pay</th>
+      <th>Paying Term</th>
+      <th>Policy Details</th>
+      <th>Premium Amount</th>
+      <th>Provider ID</th>
+      <th>Relationship</th>
+      <th>Renewal Date</th>
+      <th>Sum Assured</th>
+      <th>Policy Status</th>
+      <th nzRight nzWidth="80px">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{ data?.issue_date | date : "MMM d, yyyy" }}</td>
+      <td nzEllipsis>{{ data?.due_date | date : "MMM d, yyyy" }}</td>
+      <td nzEllipsis>{{ data?.mode_of_pay }}</td>
+      <td nzEllipsis>{{ data?.paying_term }}</td>
+      <td nzEllipsis>{{ data?.policy_details }}</td>
+      <td nzEllipsis>{{ data?.premium }}</td>
+      <td nzEllipsis>{{ data?.provider_id }}</td>
+      <td nzEllipsis>{{ data?.relationship }}</td>
+      <td nzEllipsis>{{ data?.renewal_date | date : "MMM d, yyyy" }}</td>
+      <td nzEllipsis>{{ data?.sum_assured }}</td>
+      <td nzEllipsis>{{ data?.policy_status }}</td>
+      <td nzRight>
+        <a nz-tooltip nzTooltipTitle="Edit"><button [routerLink]="['/client/investment-health-edit/', data?.id, data?.client_id, data?.provider_id]" nz-button nzSize="small" nzType="dashed"><i nz-icon nzType="edit" nzTheme="outline"></i></button></a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

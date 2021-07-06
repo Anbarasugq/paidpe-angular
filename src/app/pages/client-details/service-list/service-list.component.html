@@ -1,0 +1,95 @@
+<nz-page-header (nzBack)="onBack()" nzBackIcon [nzGhost]="false">
+  <nz-page-header-title>Service List</nz-page-header-title>
+  <nz-page-header-extra>
+    <button
+      nz-button
+      nzType="dashed"
+      [routerLink]="['/client/service-create/', clientid]"
+    >
+      <i nz-icon nzType="plus-square" nzTheme="outline"></i> Add New
+    </button>
+  </nz-page-header-extra>
+</nz-page-header>
+<nz-table
+  #basicTable
+  [nzData]="listOfData"
+  [nzLoading]="loading"
+  [nzScroll]="{ y: '360px', x: '1200px' }"
+>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Designation</th>
+      <th>Mobile No</th>
+      <th>Place</th>
+      <th>Service Time</th>
+      <th>Open Description</th>
+      <th>Close Description</th>
+      <th nzRight nzWidth="100px">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td nzEllipsis>{{ data?.name }}</td>
+      <td nzEllipsis>{{ data?.designation }}</td>
+      <td nzEllipsis>{{ data?.mobile_no }}</td>
+      <td nzEllipsis>{{ data?.place }}</td>
+      <td nzEllipsis>{{ data?.service_time | date : "MMM d, yyyy, h:mm"  }}</td>
+      <td nzEllipsis>{{ data?.open_description }}</td>
+      <td nzEllipsis>{{ data?.close_description }}</td>
+      <td nzRight>
+        <a nz-tooltip nzTooltipTitle="Close"
+          ><button
+            (click)="showModal(data?.id)"
+            nz-button
+            nzSize="small"
+            nzType="dashed"
+          >
+            Close
+          </button></a
+        >
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="Close service"
+  (nzOnCancel)="handleCancel()"
+>
+<div *nzModalContent>
+<form
+nz-form
+[formGroup]="validateForm"
+(ngSubmit)="submitForm()"
+>
+      <nz-form-item>
+        <nz-form-control >
+          <nz-input-group>
+            <textarea
+              formControlName="comment"
+              nz-input
+              rows="4"
+              placeholder="Close Description"
+            ></textarea>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control >
+          <nz-input-group>
+            <button nz-button nzType="primary">
+              Submit
+            </button>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+    </div>
+    <div *nzModalFooter>
+      <button nz-button nzType="default" (click)="handleCancel()">
+        Cancel
+      </button>
+      
+    </div>
+</nz-modal>

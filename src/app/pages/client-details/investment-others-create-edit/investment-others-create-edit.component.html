@@ -1,0 +1,54 @@
+<nz-page-header nzBackIcon [nzGhost]="false">
+  <nz-page-header-title>{{title}} Investment Others</nz-page-header-title>
+</nz-page-header>
+<nz-card class="ant-card-custom" [nzBordered]="false">
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm(validateForm)">
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="mutualfund"> Mutual Fund</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" >
+      <input nz-input type="text" formControlName="mutual_fund" id="mutualfund" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="gold"> Gold</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" >
+      <input nz-input type="text" formControlName="gold" id="gold" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="consultation"> Consultation</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" >
+      <input nz-input type="text" formControlName="consultation" id="consultation" />
+    </nz-form-control>
+  </nz-form-item>
+ 
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="pms"> PMS</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" >
+      <input nz-input type="text" formControlName="pms" id="pms" />
+    </nz-form-control>
+  </nz-form-item>
+ 
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="equity"> Equity</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" >
+      <input nz-input type="text" formControlName="equity" id="equity" />
+    </nz-form-control>
+  </nz-form-item>
+ 
+  <!-- <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24">Status</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <nz-switch formControlName="status" nzCheckedChildren="Active" nzUnCheckedChildren="InActive"></nz-switch>
+    </nz-form-control>
+  </nz-form-item> -->
+
+  <nz-form-item nz-row class="register-area">
+    <nz-form-control [nzSpan]="14" [nzOffset]="6">
+      <button [disabled]="isSubmit" nz-button nzType="primary">{{btnName}}</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+</nz-card>

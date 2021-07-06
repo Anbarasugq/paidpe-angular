@@ -1,0 +1,58 @@
+<nz-page-header nzBackIcon [nzGhost]="false">
+  <nz-page-header-title>{{title}} Service</nz-page-header-title>
+</nz-page-header>
+<nz-card class="ant-card-custom" [nzBordered]="false">
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm(validateForm)">
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name"> Name</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Name!">
+      <input nz-input type="text" formControlName="name" id="name" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="designation"> Designation</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" >
+      <input nz-input type="text" formControlName="designation" id="designation" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="mobileno"> Mobile No</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" >
+      <input nz-input type="number" formControlName="mobile_no" id="mobileno" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="place"> Place</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" >
+      <input nz-input type="text" formControlName="place" id="place" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="title" >Service Time</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" >
+      <nz-date-picker
+      nzShowTime
+      nzFormat="yyyy-MM-dd HH:mm:ss"
+      formControlName="service_time" 
+    ></nz-date-picker>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" >Open Description</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" >
+      <textarea nz-input rows="2" formControlName="open_description" placeholder="Open Description"></textarea>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item nz-row class="register-area">
+    <nz-form-control [nzSpan]="14" [nzOffset]="6">
+      <button [disabled]="isSubmit" nz-button nzType="primary">{{btnName}}</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+</nz-card>

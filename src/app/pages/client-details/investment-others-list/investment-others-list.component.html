@@ -1,0 +1,30 @@
+<nz-page-header (nzBack)="onBack()" nzBackIcon [nzGhost]="false">
+  <nz-page-header-title>Investment Others List</nz-page-header-title>
+  <nz-page-header-extra>
+    <button *ngIf="addBtnHide" nz-button nzType="dashed" [routerLink]="['/client/investment-others-create/', clientid]"> <i nz-icon nzType="plus-square" nzTheme="outline"></i> Add New</button>
+  </nz-page-header-extra>
+</nz-page-header>
+<nz-table #basicTable [nzShowPagination]="false" [nzLoading]="loading" [nzData]="listOfData" [nzScroll]="{ y: '270px', x: '800px' }">
+  <thead>
+    <tr>
+      <th>Mutual Fund</th>
+      <th>Gold</th>
+      <th>Consultation</th>
+      <th>PMS</th>
+      <th>Equity</th>
+      <th nzRight nzWidth="80px">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{ data?.mutual_fund }}</td>
+      <td nzEllipsis>{{ data?.gold }}</td>
+      <td nzEllipsis>{{ data?.consultation }}</td>
+      <td nzEllipsis>{{ data?.pms }}</td>
+      <td nzEllipsis>{{ data?.equity }}</td>
+      <td nzRight>
+        <a nz-tooltip nzTooltipTitle="Edit"><button [routerLink]="['/client/investment-others-edit/', data?.id, data?.client_id]" nz-button nzSize="small" nzType="dashed"><i nz-icon nzType="edit" nzTheme="outline"></i></button></a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

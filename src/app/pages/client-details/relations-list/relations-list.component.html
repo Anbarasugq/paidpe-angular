@@ -1,0 +1,28 @@
+<nz-page-header (nzBack)="onBack()" nzBackIcon [nzGhost]="false">
+  <nz-page-header-title>Client Relations List</nz-page-header-title>
+  <nz-page-header-extra>
+    <button nz-button nzType="dashed" [routerLink]="['/client/relations-create/', clientid]"> <i nz-icon nzType="plus-square" nzTheme="outline"></i> Add New</button>
+  </nz-page-header-extra>
+</nz-page-header>
+<nz-table #basicTable [nzData]="listOfData" [nzLoading]="loading" [nzScroll]="{ y: '365px' }">
+  <thead>
+    <tr>
+      <th>Member Name</th>
+      <th>Member DOB</th>
+      <th>Relationship</th>
+      <th>Status</th>
+      <th nzRight nzWidth="80px">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td nzEllipsis>{{ data?.member_name }}</td>
+      <td>{{ data?.member_dob }}</td>
+      <td nzEllipsis>{{ data?.relationship }}</td>
+      <td nzEllipsis> <nz-tag [nzColor]="'#87d068'">{{ data?.status == 'act' ? 'Active' : '' }}</nz-tag></td>
+      <td nzRight>
+        <a nz-tooltip nzTooltipTitle="Edit"><button [routerLink]="['/client/relations-edit/', data?.id, data?.client_id, data?.provider_id]" nz-button nzSize="small" nzType="dashed"><i nz-icon nzType="edit" nzTheme="outline"></i></button></a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

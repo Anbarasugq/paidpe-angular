@@ -1,0 +1,202 @@
+<nz-page-header (nzBack)="onBack()" nzBackIcon [nzGhost]="false">
+  <nz-page-header-title>{{ title }} KYC</nz-page-header-title>
+</nz-page-header>
+<nz-card class="ant-card-custom" [nzBordered]="false">
+  <form
+    nz-form
+    [formGroup]="validateForm"
+    (ngSubmit)="submitForm(validateForm)"
+  >
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="clientname">
+        Client Name</nz-form-label
+      >
+      <nz-form-control
+        [nzSm]="14"
+        [nzXs]="24"
+        nzErrorTip="The input is not valid Client Name!"
+      >
+        <input
+          nz-input
+          type="text"
+          formControlName="client_name"
+          id="clientname"
+        />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="mobilenumber" nzRequired>
+        Mobile No</nz-form-label
+      >
+      <nz-form-control
+        [nzSm]="14"
+        [nzXs]="24"
+        nzErrorTip="Please input your mobile number!"
+      >
+        <input
+          nz-input
+          type="number"
+          id="mobilenumber"
+          formControlName="mobile_number"
+        />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="email" nzRequired>
+        Email ID</nz-form-label
+      >
+      <nz-form-control
+        [nzSm]="14"
+        [nzXs]="24"
+        nzErrorTip="Please input your mobile Email!"
+      >
+        <input
+          nz-input
+          type="email"
+          id="email"
+          formControlName="email"
+        />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="dob" 
+        >DOB</nz-form-label
+      >
+      <nz-form-control
+        [nzSm]="14"
+        [nzXs]="24"
+      >
+        <nz-date-picker formControlName="dob"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="altmobile" 
+        >Alternate Contact No</nz-form-label
+      >
+      <nz-form-control
+        [nzSm]="14"
+        [nzXs]="24"
+      >
+        <input
+          nz-input
+          type="text"
+          id="altmobile"
+          formControlName="alt_mobile"
+        />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="annualincome" 
+        >Annual Income</nz-form-label
+      >
+      <nz-form-control
+        [nzSm]="14"
+        [nzXs]="24"
+      >
+        <input
+          nz-input
+          type="text"
+          id="annualincome"
+          formControlName="annual_income"
+        />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" 
+        >Wedding Day</nz-form-label
+      >
+      <nz-form-control
+        [nzSm]="14"
+        [nzXs]="24"
+      >
+        <nz-date-picker formControlName="wedding_day"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="panno" 
+        >PAN No</nz-form-label
+      >
+      <nz-form-control
+        [nzSm]="14"
+        [nzXs]="24"
+      >
+        <input nz-input type="text" id="panno" formControlName="pan_no" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="aadharno" 
+        >Aadhaar No</nz-form-label
+      >
+      <nz-form-control
+        [nzSm]="14"
+        [nzXs]="24"
+      >
+        <input nz-input type="text" formControlName="aadhar_no" id="aadharno" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired
+        >Assigned To</nz-form-label
+      >
+      <nz-form-control
+        [nzSm]="14"
+        [nzXs]="24"
+        nzErrorTip="The input is not valid Client Name!"
+      >
+        <nz-select
+          formControlName="assigned_to"
+          nzPlaceHolder="Select Assigned To"
+          [ngModelOptions]="{ standalone: true }"
+        >
+          <nz-option
+            *ngFor="let option of reportingTo"
+            [nzValue]="option.userid"
+            [nzLabel]="option.user_name"
+          ></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" 
+        >Sales Person</nz-form-label
+      >
+      <nz-form-control
+        [nzSm]="14"
+        [nzXs]="24"
+      >
+        <nz-select
+          formControlName="sales_person"
+          nzPlaceHolder="Select Sales Person"
+          [ngModelOptions]="{ standalone: true }"
+        >
+          <nz-option
+            *ngFor="let option of salesPerson"
+            [nzValue]="option.userid"
+            [nzLabel]="option.user_name"
+          ></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24">Is Live</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <nz-switch formControlName="isLive" nzCheckedChildren="Yes" nzUnCheckedChildren="No"></nz-switch>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item nz-row class="register-area">
+      <nz-form-control [nzSpan]="14" [nzOffset]="6">
+        <button [disabled]="isSubmit" nz-button nzType="primary">{{ btnName }}</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-card>
